@@ -7,17 +7,16 @@
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <body >
-
 	<div class="container">
 		<div class="loginfield">
 		<form action="zaloguj.php" method="post">
 			Login
 			<br />
-			<input type="text" class="login" name="login" />
+			<input type="text" class="poleWprowadzania" name="login" />
 			<br />
 			Password
 			<br />
-			<input type="password" class="login" name="password" />
+			<input type="password" class="poleWprowadzania" name="password" />
 			<br />
 			<input type="submit" value="Login" class="upperBtn">
 		</form>
@@ -26,6 +25,5 @@
 		</div>
 		</div>
 	</div>
-
 </body>
 </html>

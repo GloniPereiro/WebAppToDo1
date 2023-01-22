@@ -16,12 +16,10 @@ session_start();
 		<br />
 		<button class="upperBtn">
 			<?php
-				echo "Witaj! </br>";
 				echo $_SESSION['user'];
 			?>
 		</button><br />
 		<button  class="upperBtn" onclick="onWyloguj()">Wyloguj</button>
-
 	</div>
 
 	<div class="container">
@@ -32,71 +30,46 @@ session_start();
 			<input type="text" class="poleWprowadzania" id="poleWprowadzania" name="title" required />
 			<input type="submit" class="btnDodaj"  value="Add"/>
 		</form>
-
 		<div class="listaZadan" id="lista">
 			<div class="zrobione"><h3>to Do</h3></div>
 			<div id="zadanie" class="zadanie">
 				<?php
-
 					require_once "connect.php";
 						if(!isset($_SESSION['user'])) {
-							// Redirect to login page
 							header("Location: login.php");
 							exit;
 						}
 					$confirm_connect = @new mysqli($host, $db_user, $db_password, $db_name);
-					//Przygotowanie zapytania SQL do pobrania danych z tabeli
 					$check_user_query = "SELECT * FROM newtable WHERE email = '{$_SESSION['user']}'";
-
 					$check_user_result = mysqli_query($confirm_connect, $check_user_query);
-
 					$query = "SELECT * FROM tasks WHERE email ='{$_SESSION['user']}' AND status = 0 ";
 					$result = mysqli_query($confirm_connect, $query);
-
-					//Wyœwietlenie danych z tabeli
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<div id='zadanie' class='zadanie'>" . $row['title'] ."
 						<button onclick='deleteRecord({$row['id']})' class='delete-button' data-id='{$row['id']}'>Usun</button>
-						<button onclick='markAsDone({$row['id']})' class='done-button' data-id='{$row['id']}'>Zrobione</button>
+						<button onclick='markAsDone({$row['id']})' class='delete-button' data-id='{$row['id']}'>Zrobione</button>
 						</div>";
-				
 					}
-
 					mysqli_close($confirm_connect);
 				?>
-
-
 			</div>
-
 		</div>
 		<div class="listaZadan" id="zrobione">
 
 			<div id="zadanie" class="zadanie"></div>
 			<div class="zrobione"><h3>Done</h3></div>
-
-			
 		<?php
-
 					require_once "connect.php";
-
 					$confirm_connect = @new mysqli($host, $db_user, $db_password, $db_name);
-					//Przygotowanie zapytania SQL do pobrania danych z tabeli
 					$query = "SELECT * FROM tasks WHERE email ='{$_SESSION['user']}' AND status = 1 ";
-
-
-
-					//Wykonanie zapytania
 					$result = mysqli_query($confirm_connect, $query);
-					//Wyœwietlenie danych z tabeli
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<div id='zadanie' class='zadanie'>" . $row['title'] ."
 						<button onclick='deleteRecord({$row['id']})' class='delete-button' data-id='{$row['id']}'>Usun</button>
 						</div>";
-				
 					}
-
 					mysqli_close($confirm_connect);
 				?>
 		</div>
