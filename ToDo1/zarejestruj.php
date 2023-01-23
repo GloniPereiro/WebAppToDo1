@@ -8,10 +8,20 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $stmt = mysqli_prepare($confirm_connect, "SELECT * FROM newtable WHERE email = ?");
-    $result = mysqli_stmt_get_result($stmt);
+
+    if(strlen($login) < 5 || strlen($login) > 20) {
+    header('Location: errorRegister.php?error=loginLength');
+    exit();
+    }
+    if(strlen($password) < 8 || strlen($password) > 30) {
+    header('Location: errorRegister.php?error=passwordLength');
+    exit();
+    }
 
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
     if(mysqli_num_rows($result) > 0) {
         header('Location: errorRegister.php');
     } else {
