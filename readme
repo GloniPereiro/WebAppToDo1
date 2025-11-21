@@ -1,1 +1,33 @@
-Strona dziala z uzyciem xampp
+ToDo Project Setup Guide
+Ten dokument zawiera instrukcje, jak uruchomić projekt ToDo lokalnie za pomocą XAMPP oraz jak skonfigurować wymaganą bazę danych MySQL.
+Wymagania wstępne
+Zainstalowany XAMPP (zawiera Apache, PHP i phpMyAdmin/MySQL).
+Krok 1: Umieszczenie plików projektu w XAMPP
+Upewnij się, że masz zainstalowany XAMPP (domyślnie w C:\xampp\).
+Otwórz folder htdocs w katalogu instalacyjnym XAMPP (np. C:\xampp\htdocs\).
+Skopiuj cały folder projektu (nazwijmy go ToDo) do katalogu htdocs.
+Ścieżka projektu powinna wyglądać tak: C:\xampp\htdocs\ToDo\
+Krok 2: Uruchomienie serwera Apache i MySQL
+Otwórz XAMPP Control Panel.
+Kliknij przycisk Start obok modułu Apache.
+Kliknij przycisk Start obok modułu MySQL.
+Oba moduły powinny mieć zielony status.
+Krok 3: Importowanie bazy danych (firstproject.sql)
+Projekt wymaga bazy danych o nazwie firstproject. Struktura bazy danych znajduje się w pliku firstproject.sql (zakładamy, że ten plik znajduje się w Twoim projekcie).
+Otwórz przeglądarkę internetową i przejdź do phpMyAdmin:
+http://localhost/phpmyadmin/
+Utwórz nową bazę danych:
+W lewym pasku bocznym kliknij przycisk "Nowa" lub zakładkę "Bazy danych".
+W polu "Nazwa bazy danych" wpisz dokładnie: firstproject
+(Opcjonalnie) W polu "Kodowanie znaków" wybierz utf8mb4_general_ci.
+Kliknij "Utwórz".
+Importuj plik SQL:
+W lewym menu kliknij nazwę nowo utworzonej bazy danych firstproject.
+Na górnym pasku menu kliknij zakładkę "Import".
+Kliknij przycisk "Wybierz plik" i wskaż plik firstproject.sql znajdujący się w folderze Twojego projektu (np. C:\xampp\htdocs\ToDo\firstproject.sql).
+Przewiń stronę na dół i kliknij przycisk "Wykonaj".
+Po pomyślnym zaimportowaniu, w lewym pasku bocznym powinny pojawić się tabele (np. newtable).
+Krok 4: Testowanie strony
+Wszystko powinno być już gotowe. Możesz otworzyć stronę w przeglądarce, wpisując adres:
+http://localhost/ToDo/
+Strona powinna działać poprawnie.
